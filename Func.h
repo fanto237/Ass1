@@ -12,19 +12,17 @@ public:
     Func& operator=(const Func& crArg) = delete;
 
     // methods
-    const Func* getThen(unsigned iVar) const;
-    const Func* getElse(unsigned iVar) const;
+    const Func& getThen(unsigned iVar) const;
+    const Func& getElse(unsigned iVar) const;
     unsigned getVar() const ;
     bool isTrue() const ;
     bool isFalse() const ;
     bool isConstant() const ;
 
-    // Operator
-    friend bool operator==(const Func& crArg1, const Func& crArg2);
 
 private:
     // members
-    static const unsigned TRUE = ~0;
+    static const unsigned TRUE = ~0; //0xffffffff
     static const unsigned FALSE = TRUE-1;
     unsigned m_ciVar;
     const Func* m_cThen = nullptr;

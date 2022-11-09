@@ -15,6 +15,8 @@ public:
     // constructors
     Triple(unsigned iVar, const Func& fThen, const Func& fElse);
 
+    friend bool operator<(const Triple& crArg1, const Triple& crArg2);
+
 
 private:
     // members

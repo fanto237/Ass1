@@ -3,4 +3,4 @@ project(Ass1)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(Ass1 Main.cpp ROBDD.cpp ROBDD.h Func.cpp Func.h Triple.cpp Triple.h ISCAS.h)
+add_executable(Ass1 Main.cpp ROBDD.cpp ROBDD.h Func.cpp Func.h Triple.cpp Triple.h ISCAS.h FuncTriple.cpp FuncTriple.h)

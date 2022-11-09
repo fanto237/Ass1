@@ -1,22 +1,26 @@
-C++ = g++
-CFLAGS = -Wall -Wextra -Weffc++ -pedantic -fPIE
-C_DEBUG_FLAGS = -g
-RM = /bin/rm -f
-EXEC = ausgabe
-SRC = main.cpp Func.cpp ROBDD.cpp
-OBJ = $(SRC:.cpp=.o)
+CC		= g++
+CFLAGS		= -Wall -Wextra -Weffc++ -pedantic -fPIE
+C_DEBUG_FLAGS	= -g
+RM		= /bin/rm -f
+EXEC_NAME	= ISCAS
+LIB_NAME	= lib$(EXEC_NAME).a
+LIBSOURCES	= $(EXEC_NAME).cpp
+SOURCES		= $(wildcard *.cpp)
+SOURCES = Main.cpp Func.cpp ROBDD.cpp  Triple.cpp FuncTriple.cpp
+LIBOBJECTS	= $(LIBSOURCES:.cpp=.o)
+OBJECTS		= $(SOURCES:.cpp=.o)
 
-default: $(EXEC)
+default: $(EXEC_NAME)
 
-$(EXEC): $(OBJ)
-	$(C++) -o $(EXEC) $(OBJ)
+$(EXEC_NAME): $(OBJECTS)
+	$(CC) -o $(EXEC_NAME) $(OBJECTS) -L. -l $(EXEC_NAME)
 
 %.o: %.cpp
-	$(C++) $(C_DEBUG_FLAGS) $(CFLAGS) -MMD -c $<
+	$(CC) $(C_DEBUG_FLAGS) $(CFLAGS) -MMD -c $<
 
-
-%.cpp:
--include $(SRC:.cpp=.d)
+-include $(SOURCES:.cpp=.d)
 
 clean:
-	$(RM) $(EXEC) $(OBJ) *.d
+	$(RM) $(EXEC_NAME) *.d *.o
+
+
