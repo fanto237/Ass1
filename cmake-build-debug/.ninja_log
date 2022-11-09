@@ -1,13 +1,6 @@
 # ninja log v5
-0	237	6896424988770155	CMakeFiles/Ass1.dir/Main.cpp.obj	8b2f73df63e741a
-239	319	6896424989550166	Ass1.exe	7e7f2a3da7568bd0
-9	53	6896431101347581	CMakeFiles/Ass1.dir/Triple.cpp.obj	6a87cff6c5589fb2
-2	58	6896431101402577	CMakeFiles/Ass1.dir/Func.cpp.obj	827e43affd0e417c
-6	120	6896431102022838	CMakeFiles/Ass1.dir/ROBDD.cpp.obj	a4d10f0ec25e1c69
-120	186	6896431102652857	Ass1.exe	efcfca650f7579d3
-8	47	6896431573755129	CMakeFiles/Ass1.dir/Triple.cpp.obj	6a87cff6c5589fb2
-2	49	6896431573770103	CMakeFiles/Ass1.dir/Func.cpp.obj	827e43affd0e417c
+3	1298	6896842198041197	CMakeFiles/Ass1.dir/Main.cpp.obj	6bbf9e23f7a47495
+53	401	6896842188997204	CMakeFiles/Ass1.dir/Triple.cpp.obj	f1e5d2f7d6c4fb33
+76	488	6896842189810014	CMakeFiles/Ass1.dir/Func.cpp.obj	4bfbcb95d729f9e7
 5	118	6896431574470092	CMakeFiles/Ass1.dir/ROBDD.cpp.obj	a4d10f0ec25e1c69
-118	181	6896431575065310	Ass1.exe	efcfca650f7579d3
-2	210	6896432814635364	CMakeFiles/Ass1.dir/Main.cpp.obj	8b2f73df63e741a
 211	276	6896432815265495	Ass1.exe	efcfca650f7579d3
