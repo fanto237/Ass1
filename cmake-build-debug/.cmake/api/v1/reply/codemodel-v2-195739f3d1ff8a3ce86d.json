@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/lucie/Documents/git/ass1/cmake-build-debug",
-		"source" : "C:/Users/lucie/Documents/git/ass1"
+		"build" : "C:/Users/lucie/git/ass1/cmake-build-debug",
+		"source" : "C:/Users/lucie/git/ass1"
 	},
 	"version" : 
 	{

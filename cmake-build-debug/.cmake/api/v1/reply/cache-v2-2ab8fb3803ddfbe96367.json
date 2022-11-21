@@ -11,7 +11,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/lucie/Documents/git/ass1/cmake-build-debug"
+			"value" : "C:/Users/lucie/git/ass1/cmake-build-debug"
 		},
 		{
 			"name" : "Ass1_IS_TOP_LEVEL",
@@ -35,7 +35,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/lucie/Documents/git/ass1"
+			"value" : "C:/Users/lucie/git/ass1"
 		},
 		{
 			"name" : "CMAKE_ADDR2LINE",
@@ -91,7 +91,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/lucie/Documents/git/ass1/cmake-build-debug"
+			"value" : "c:/Users/lucie/git/ass1/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -659,7 +659,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/lucie/Documents/git/ass1"
+			"value" : "C:/Users/lucie/git/ass1"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",

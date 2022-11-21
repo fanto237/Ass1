@@ -11,7 +11,7 @@
 class FuncTriple {
 public:
     FuncTriple(const Func& f, const Func &g, const Func& h);
-    FuncTriple(const FuncTriple& crArg) = delete;
+//    FuncTriple(const FuncTriple& crArg) = delete;
     const FuncTriple& operator=(const FuncTriple& crArg) = delete;
 
     // operators

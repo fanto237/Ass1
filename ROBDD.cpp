@@ -37,42 +37,41 @@ const Func &ROBDD::ite(const Func &i, const Func &t, const Func &e) {
         if(resUnique != m_Unique.end() ){
             resUnique = m_Unique.insert({entry, new Func(ciVar, T, E)}).first;
         }
-        Func* pTmp = resUnique->second;
-        m_Computed.insert({obj, pTmp}); // TODO send file to Herr Kelb for further analyse
+        m_Computed.insert({obj, resUnique->second});
         return *resUnique->second;
     }
 }
 
+// todo turn genvar into function with string parameter
 Func& ROBDD::genVar(unsigned i){
     Triple entry = Triple(i, genTrue(), genFalse());
-    auto res = m_Unique.find(entry);
-    if(!res){
-        res = new Func(i, genTrue(), genFalse());
-        m_Unique.insert(entry, res);
+    auto resUnique = m_Unique.find(entry);
+    if(resUnique != m_Unique.end()){
+        resUnique = m_Unique.insert({entry, new Func(i, genTrue(), genFalse())}).first;
     }
-    return *res;
+    return *resUnique->second;
 }
 
-//const Func &ROBDD::AND(const Func &f, const Func &g) {
-//    return <#initializer#>;
-//}
-//
-//const Func &ROBDD::NAND(const Func &f, const Func &g) {
-//    return <#initializer#>;
-//}
-//
-//const Func &ROBDD::OR(const Func &f, const Func &g) {
-//    return <#initializer#>;
-//}
-//
-//const Func &ROBDD::XOR(const Func &f, const Func &g) {
-//    return <#initializer#>;
-//}
-//
-//const Func &ROBDD::NOR(const Func &f, const Func &g) {
-//    return <#initializer#>;
-//}
-//
-//const Func &ROBDD::NOT(const Func &f) {
-//    return <#initializer#>;
-//}
+const Func &ROBDD::AND(const Func &f, const Func &g) {
+    return ite(f, g, genFalse());
+}
+
+const Func &ROBDD::NAND(const Func &f, const Func &g) {
+    return NOT(AND(f, g));
+}
+
+const Func &ROBDD::OR(const Func &f, const Func &g) {
+    return ite(f, genTrue(), g);
+}
+
+const Func &ROBDD::XOR(const Func &f, const Func &g) {
+    return ite(f, NOT(g), g);
+}
+
+const Func &ROBDD::NOR(const Func &f, const Func &g) {
+    return NOT(OR(f, g));
+}
+
+const Func &ROBDD::NOT(const Func &f) {
+    return ite(f, genFalse(), genTrue());
+}

@@ -7,7 +7,7 @@ class Func{
 public:
     // constructors
     explicit Func(bool b);
-    Func(unsigned iVar, const Func& t, const Func& e);
+    Func(unsigned iVagr, const Func& t, const Func& e);
     Func(const Func& crArg) = delete;
     Func& operator=(const Func& crArg) = delete;
 
