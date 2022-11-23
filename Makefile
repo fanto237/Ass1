@@ -6,7 +6,6 @@ EXEC_NAME	= ISCAS
 LIB_NAME	= lib$(EXEC_NAME).a
 LIBSOURCES	= $(EXEC_NAME).cpp
 SOURCES		= $(wildcard *.cpp)
-SOURCES = Main.cpp Func.cpp ROBDD.cpp  Triple.cpp FuncTriple.cpp
 LIBOBJECTS	= $(LIBSOURCES:.cpp=.o)
 OBJECTS		= $(SOURCES:.cpp=.o)
 
@@ -21,6 +20,7 @@ $(EXEC_NAME): $(OBJECTS)
 -include $(SOURCES:.cpp=.d)
 
 clean:
-	$(RM) $(EXEC_NAME) *.d *.o
+	$(RM) *.d *.o
+	#$(RM) $(EXEC_NAME) *.d *.o
 
 

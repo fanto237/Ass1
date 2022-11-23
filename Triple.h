@@ -8,20 +8,21 @@
 
 #include "Func.h"
 
-class Triple{
+class Triple {
 
 public:
 
     // constructors
-    Triple(unsigned iVar, const Func& fThen, const Func& fElse);
-    friend bool operator<(const Triple& crArg1, const Triple& crArg2);
+    Triple(unsigned iVar, const Func &fThen, const Func &fElse);
 
+    // operators
+    friend bool operator<(const Triple &crArg1, const Triple &crArg2);
 
 private:
     // members
     const unsigned m_ciVar;
-    const Func& m_cThen;
-    const Func& m_cElse;
+    const Func &m_cThen;
+    const Func &m_cElse;
 };
 
 #endif //ASS1_TRIPLE_H

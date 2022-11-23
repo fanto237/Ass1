@@ -1,13 +1,16 @@
 #include <iostream>
-#include "Func.h"
+#include "ISCAS.h"
+#include "ROBDD.h"
 
 
 int main() {
-    Func f(false);
 
-//    bool result = f.isFalse();
-//    std::cout << (result? "true" : "false") << std::endl;
-//
-//    std::cout << "Hello, World!" << std::endl;
+    ISCAS iscas(stdin);
+    ROBDD robdd;
+
+    robdd.drawGraph(iscas);
+
+//    std::cout <<
+
     return 0;
 }
