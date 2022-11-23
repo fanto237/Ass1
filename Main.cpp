@@ -10,7 +10,5 @@ int main() {
 
     robdd.drawGraph(iscas);
 
-//    std::cout <<
-
     return 0;
 }

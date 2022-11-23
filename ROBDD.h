@@ -20,6 +20,8 @@ public:
 
     ROBDD &operator=(const ROBDD &crArg) = delete;
 
+    ~ROBDD();
+
     // Methods
     const Func &genTrue() const;
 
