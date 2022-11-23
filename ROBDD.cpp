@@ -89,7 +89,6 @@ const Func &ROBDD::NOT(const Func &f) {
 
 void ROBDD::drawGraph(ISCAS iscas) {
     if (iscas.isValid()) {
-        std::cout << "trying to get the functions... \n";
         readFunctions(iscas);
     } else {
         std::cout << "iscas file not valid" << std::endl;
@@ -99,18 +98,9 @@ void ROBDD::drawGraph(ISCAS iscas) {
 void ROBDD::readFunctions(ISCAS iscas) {
 
     for (auto &input: iscas.inputs()) {
-        std::cout << "trying to get the inputs... \n";
-        std::cout << input << std::endl;
-        std::cout << "input printed" << std::endl;
-
-        std::cout << *m_Funcs.find(input)->second << std::endl;
-        std::cout << m_Funcs.find(input)->first << std::endl;
         auto &func = genVar(input);
-        std::cout << func << "func has been printed" << std::endl;
-
         m_Funcs.insert({input, &func});
         m_Labels.insert({func.getVar(), input});
-        std::cout << "inputs loaded... \n";
     }
 
     for (auto &assignment: iscas.assignments()) {
@@ -118,7 +108,6 @@ void ROBDD::readFunctions(ISCAS iscas) {
         auto op = std::get<1>(assignment);
         const Func *func = m_Funcs.find(*params.begin())->second;
 
-        std::cout << "assignment found" << std::endl;
         for (auto i = params.begin() + 1; i != params.end(); ++i) {
             switch (op) {
                 case ISCAS::AND:
@@ -136,7 +125,7 @@ void ROBDD::readFunctions(ISCAS iscas) {
                     break;
 
                 default:
-                    assert(false); // todo double check
+                    assert(false);
                     break;
             }
         }
@@ -144,19 +133,17 @@ void ROBDD::readFunctions(ISCAS iscas) {
             func = &NOT(*func);
         }
         m_Funcs.insert({std::get<0>(assignment), func});
-        std::cout << "Function : " << std::get<0>(assignment) << " inserted: " << std::endl;
     }
 
-    std::cout << "All functions inserted" << std::endl;
-    m_GraphFile.open("graph.dot"); // todo muss durch stdout augegben werden
-    m_GraphFile << "digraph {" << std::endl;
-    m_GraphFile << "subgraph cluster_0{" << std::endl;
-    m_GraphFile << "style=invis" << std::endl;
+//    std::cout << "All functions inserted" << std::endl;
+    std::cout << "digraph {" << std::endl;
+    std::cout << "subgraph cluster_0{" << std::endl;
+    std::cout << "style=invis" << std::endl;
 
     for (auto &out: iscas.outputs()) {
-        m_GraphFile << out << " [shape=plaintext]" << std::endl;
+        std::cout << out << " [shape=plaintext]" << std::endl;
     }
-    m_GraphFile << "}" << std::endl;
+    std::cout << "}" << std::endl;
     draw(iscas);
 }
 
@@ -166,41 +153,36 @@ void ROBDD::draw(ISCAS iscas) {
         auto iter = m_Funcs.find(outpout);
         auto key = iter->second->getVar();
 
-        m_GraphFile << "\"" <<iter->first <<"\"" << "->" << "\""<<iter->second <<"\""<< std::endl;
-        m_GraphFile << "\""<<iter->second<<"\""<<" [label=" << m_Labels.find(key)->second << "]" << std::endl;
-        m_GraphFile << *iter->second;
+        std::cout << "\"" <<iter->first <<"\"" << "->" << "\""<<iter->second <<"\""<< std::endl;
+        std::cout << "\""<<iter->second<<"\""<<" [label=" << m_Labels.find(key)->second << "]" << std::endl;
+        std::cout << *iter->second;
 
         funcs.push_back(iter->second->getThen(key));
-        std::cout << "next then " << funcs.back() << std::endl;
         funcs.push_back(iter->second->getElse(key));
-        std::cout << "next else " << funcs.back() << std::endl;
 
         while (!funcs.empty()) {
             auto func = funcs.back();
             auto res = m_FuncsSet.find(func);
             if ( res == m_FuncsSet.end()) {
-                std::cout << func << " not visited " << std::endl;
                 m_FuncsSet.insert(func);
-                std::cout << *res << " inserted " << std::endl;
 
                 if (func->isConstant()) {
                     std::cout << "constant " << std::endl;
                     if (func->isTrue())
                         // 1
-                        m_GraphFile << "\"" << func << "\"" << " [shape=box, label= 1]" << std::endl;
+                        std::cout << "\"" << func << "\"" << " [shape=box, label= 1]" << std::endl;
                     else if (func->isFalse())
 
                         // 0
-                        m_GraphFile << "\"" << func << "\"" << " [shape=box, label= 0]" << std::endl;
+                        std::cout << "\"" << func << "\"" << " [shape=box, label= 0]" << std::endl;
                     funcs.pop_back();
-                    std::cout << "next func" << funcs.back() << std::endl;
                 } else {
                     unsigned ivar = func->getVar();
                     std::cout << "Var = " << ivar << std::endl;
                     auto resLabel = m_Labels.find(ivar);
                     assert(resLabel != m_Labels.end());
-                    m_GraphFile << "\"" << func << "\"" << " [label=" << resLabel->second << "]" << std::endl;
-                    m_GraphFile << *func << std::endl;
+                    std::cout << "\"" << func << "\"" << " [label=" << resLabel->second << "]" << std::endl;
+                    std::cout << *func << std::endl;
                     if(func->getThen(ivar) && func->getElse(ivar)){
                         funcs.push_back(func->getThen(ivar));
                         funcs.push_back(func->getElse(ivar));
@@ -211,6 +193,5 @@ void ROBDD::draw(ISCAS iscas) {
             funcs.pop_back();
         }
     }
-    m_GraphFile << "}" << std::endl;
-    m_GraphFile.close();
+    std::cout << "}" << std::endl;
 }
