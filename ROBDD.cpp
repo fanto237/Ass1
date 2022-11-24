@@ -10,8 +10,11 @@ ROBDD::ROBDD() : m_cTrue(new Func(true)), m_cFalse(new Func(false)), m_Unique(),
 
 
 ROBDD::~ROBDD() {
-    for (auto i = m_Unique.begin(); i != m_Unique.end();){
-        delete i->second;
+    delete m_cTrue;
+    delete m_cFalse;
+
+    for (auto &iter: m_Unique) {
+        delete iter.second;
     }
 }
 
@@ -173,12 +176,14 @@ void ROBDD::draw(ISCAS iscas) {
             if (res == m_FuncsSet.end()) {
                 // func not visited yet
                 m_FuncsSet.insert(func);
-
                 if (func->isConstant()) {
-                    if (func->isTrue())
+                    if (func->isTrue()) {
+                        //1
                         std::cout << "\"" << func << "\"" << " [shape=box, label= 1]" << std::endl;
-                    else if (func->isFalse())
+                    } else if (func->isFalse()) {
+                        // 0
                         std::cout << "\"" << func << "\"" << " [shape=box, label= 0]" << std::endl;
+                    }
                     funcs.pop_back();
                 } else {
                     unsigned ivar = func->getVar();
@@ -187,8 +192,8 @@ void ROBDD::draw(ISCAS iscas) {
                     std::cout << "\"" << func << "\"" << " [label=" << resLabel->second << "]" << std::endl;
                     std::cout << *func << std::endl;
                     if (func->getThen(ivar) && func->getElse(ivar)) {
-                        funcs.push_back(func->getThen(ivar));
                         funcs.push_back(func->getElse(ivar));
+                        funcs.push_back(func->getThen(ivar));
                     }
                     continue;
                 }
