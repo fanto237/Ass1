@@ -34,3 +34,10 @@ std::ostream &operator<<(std::ostream &os, const Func &crArg) {
     os << "\"" << &crArg << "\"" << "->" << "\"" << crArg.m_cElse << "\"" << " [label=0,color=red]" << std::endl;
     return os;
 }
+
+bool operator<(const Func &crArg1, const Func &crArg2) {
+    return crArg1.m_ciVar < crArg2.m_ciVar ||
+           (crArg1.m_ciVar == crArg2.m_ciVar && crArg1.m_cThen < crArg2.m_cThen) ||
+           (crArg1.m_ciVar == crArg2.m_ciVar && crArg1.m_cThen == crArg2.m_cThen && crArg1.m_cElse < crArg2.m_cElse);
+}
+

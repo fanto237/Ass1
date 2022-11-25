@@ -161,14 +161,9 @@ void ROBDD::draw(ISCAS iscas) {
     std::vector<const Func *> funcs;
     for (auto &outpout: iscas.outputs()) {
         auto iter = m_Funcs.find(outpout);
-        auto key = iter->second->getVar();
 
         std::cout << "\"" << iter->first << "\"" << "->" << "\"" << iter->second << "\"" << std::endl;
-        std::cout << "\"" << iter->second << "\"" << " [label=" << m_Labels.find(key)->second << "]" << std::endl;
-        std::cout << *iter->second;
-
-        funcs.push_back(iter->second->getThen(key));
-        funcs.push_back(iter->second->getElse(key));
+        funcs.push_back(iter->second);
 
         while (!funcs.empty()) {
             auto func = funcs.back();
@@ -185,16 +180,16 @@ void ROBDD::draw(ISCAS iscas) {
                         std::cout << "\"" << func << "\"" << " [shape=box, label= 0]" << std::endl;
                     }
                     funcs.pop_back();
+                    continue;
                 } else {
+
                     unsigned ivar = func->getVar();
                     auto resLabel = m_Labels.find(ivar);
                     assert(resLabel != m_Labels.end());
                     std::cout << "\"" << func << "\"" << " [label=" << resLabel->second << "]" << std::endl;
                     std::cout << *func << std::endl;
-                    if (func->getThen(ivar) && func->getElse(ivar)) {
-                        funcs.push_back(func->getElse(ivar));
-                        funcs.push_back(func->getThen(ivar));
-                    }
+                    funcs.push_back(func->getElse(ivar));
+                    funcs.push_back(func->getThen(ivar));
                     continue;
                 }
             }

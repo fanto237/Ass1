@@ -32,6 +32,7 @@ public:
     // operators
     friend std::ostream &operator<<(std::ostream &os, const Func &crArg);
 
+    friend bool operator<(const Func &crArg1, const Func &crArg2);
 
 private:
     // members
