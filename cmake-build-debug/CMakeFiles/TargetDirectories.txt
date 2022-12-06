@@ -1,3 +1,0 @@
-C:/Users/Study/git/Ass1/cmake-build-debug/CMakeFiles/Ass1.dir
-C:/Users/Study/git/Ass1/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Study/git/Ass1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
